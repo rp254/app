@@ -5,6 +5,8 @@ from wtforms.validators import (DataRequired, Regexp, ValidationError, Email, Le
 
 from model import User
 
+# after saving
+
 
 def name_exists(form, field):
     if User.select().where(User.username == field.data).exists():
