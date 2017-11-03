@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}RP{% endblock %}</title>
+    <meta name="description" content="">
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <style>
+        .fa{
+            font-size: 23px;
+            color: #070585;
+        }
+        .row{
+            color: #3c3c3c;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="{{ url_for('index') }}" class="navbar-brand" href="#">Social App</a>
+                    </div>
+{#                    <div class="navbar-header">#}
+{#                        <a class="nav navbar-nav navbar-center" href="#"><h1>Hello{% if current_user.is_authenticated %} {{ current_user.username }}{% endif %}!</h1></a>#}
+{#                    </div>#}
+
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('profile') }}"><spam class="glyphicon glyphicon-user"></spam>Profile</a></li>
+                            <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                            <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <div class="container">
+
+                        <div class="row col-md-6 col-md-offset-3">
+
+                            <ul class="nav navbar-nav">
+
+                                <!-- Flash messages -->
+                                {% with messages = get_flashed_messages(with_categories=True) %}
+                                    {% if messages %}
+                                        {% for category, message in messages %}
+                                            <div class="notification {{ category }}">{{ message }}</div>
+
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                                <li><a class="active"><a href="{{ url_for('index') }}">Home</a></a></li>
+                                <li><a href="#"><a href="{{ url_for('stream', username=current_user.username) }}">Following</a></a>
+                                </li>
+                                <li><a href="#"><a href="{{ url_for('post') }}" class="new">Create New Post</a></a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+{#                    <ul class="nav navbar-nav navbar-right">#}
+{#                        {% if current_user.is_authenticated %}#}
+{#                        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>#}
+{#                        <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>#}
+{#                        {% else %}#}
+{#                        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>#}
+{#                        {% endif %}#}
+{#                    </ul>#}
+                </div>
+            </nav>
+{#            <div class="container">#}
+{#                <div class="row col-md-6 col-md-offset-5">#}
+{#                    <div class="grid-33">#}
+{#                        <a href="{{ url_for('index') }}" class="icon-logo"></a>#}
+{#                    </div>#}
+{##}
+{#                    <div class="grid-33">#}
+{#                        <!-- Say Hi -->#}
+{#                        <h1>Hello{% if current_user.is_authenticated %} {{ current_user.username }}{% endif %}!</h1>#}
+{##}
+{#                    </div>#}
+{##}
+{#                    <div class="grid-33">#}
+{#                        <!-- Log in/Log out -->#}
+{#                        {% if current_user.is_authenticated %}#}
+{#                            <a href="{{ url_for('logout') }}" class="icon-power" title="Log out"><i class="fa fa-sign-out"></i>Logout</a>#}
+{#                        {% else %}#}
+{#                            <a href="{{ url_for('login') }}" class="icon-power" title="Log in"></a>#}
+{#                            <a href="{{ url_for('register') }}" class="icon-profile" title="Register"></a>#}
+{#                        {% endif %}#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
+
+        </div>
+
+
+    </header>
+
+
+{#    <div class="row">#}
+{#        <div class="container">#}
+{#            <div class="row col-md-6 col-md-offset-3">#}
+{#            <div class="u-full-width col-md-6-offset-3">#}
+{##}
+{#                  <!-- Flash messages -->#}
+{#                {% with messages = get_flashed_messages(with_categories=True) %}#}
+{#                    {% if messages %}#}
+{#                        {% for category, message in messages %}#}
+{#                            <div class="notification {{ category }}">{{ message }}</div>#}
+{##}
+{#                        {% endfor %}#}
+{#                    {% endif %}#}
+{#                {% endwith %}#}
+{##}
+{#                <ul class="nav nav-pills nav-justified">#}
+{#                    <li class="active"><a href="{{ url_for('index') }}">All</a></li>#}
+{#                    <li class="active"><a href="{{ url_for('stream', username=current_user.username) }}">Following</a></li>#}
+{#                    <li class="active"><a href="{{ url_for('post') }}" class="new">Create New Post</a></li>#}
+{#                </ul>#}
+{##}
+{#            </div>#}
+{##}
+{#         {% block content %} {% endblock %}#}
+{#        </div>#}
+        {% block content %} {% endblock %}
+
+{#    </div>#}
+
+
+
+</body>
+</html>

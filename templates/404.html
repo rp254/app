@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row col-md-6 col-md-offset-3">
+
+            <h1>404</h1>
+
+            <p>Wow, sorry, that page doesn't exist.</p>
+
+            <p><a href="{{ url_for('index') }}">Try again</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}
